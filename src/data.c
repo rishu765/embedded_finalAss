@@ -60,4 +60,34 @@ uint8 my_itoa(int32 data, uint8 * ptr, uint32 base)
   return digitCounter;
 }
 
+int32 my_atoi(uint8 * ptr, uint8 digits, uint32 base)
+{
+  int32 number = 0;
+  uint8 isNegative = 0;
 
+  // Check sign
+  if(*ptr == '-')
+  {
+    isNegative = 1;
+    // Move on to the next digit
+    ptr++;
+    // One less digit to deal with
+    digits--;
+  }
+
+  digits--;
+
+  for(int i = 0; i < digits; i++)
+  {
+    number = number * base + *ptr - '0';
+    ptr++;
+  }
+
+  // Apply the negative sign if needed
+  if(isNegative)
+  {
+    number = -number;
+  }
+
+  return number;
+}
