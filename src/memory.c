@@ -75,4 +75,31 @@ uint8 * my_memset(uint8 * src, uint8 length, uint8 value){
     return src;
 }
 
+uint8 * my_memzero(uint8 * src, uint8 length){
+     for (int cellCount=0; cellCount<length; cellCount++){
+        *(src+cellCount) = 0;
+    }
+    return src;
+}
 
+uint8 * my_reverse(uint8 * src, uint8 length){
+    uint8 numberOfSwapOperations = length/2;
+    uint8 temp=0;
+    for (int counter=0; counter<numberOfSwapOperations; counter++){
+        temp = *(src + counter);
+        *(src+counter) = *(src+length-1-counter);
+        *(src+length-1-counter) = temp;
+    }
+    return src;
+}
+
+int32 * reserve_words(uint8 length){
+    if (((int32 *) malloc(length)) != NULL){
+        return ((int32 *) malloc(length));
+    }
+    else return NULL;
+}
+
+void free_words(int32 * src){
+    free((void *)src);
+}
